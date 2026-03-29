@@ -1,29 +1,62 @@
-<section class="grid gap-10 lg:grid-cols-[1fr_340px] lg:items-center">
-  <div class="space-y-6">
-    <p class="text-xs uppercase tracking-[0.2em] text-text-muted">Portfolio</p>
+<section class="grid gap-8 text-center lg:grid-cols-[1fr_340px] lg:items-center lg:gap-10 lg:text-left">
+  <div class="order-2 space-y-6 lg:order-1">
+    <p class="text-xs uppercase tracking-[0.2em] text-text-muted">{{ i18n.texts().home.sectionLabel }}</p>
 
     <h1 class="heading max-w-3xl text-4xl font-semibold sm:text-5xl">
       Higor Gabriel Lino Silva
     </h1>
 
-    <p class="max-w-2xl text-text-muted">
-      Use este bloco para abrir a página com uma frase curta sobre o que você faz.
+    <p class="mx-auto max-w-2xl text-text-muted lg:mx-0">
+      {{ i18n.texts().home.about }}
     </p>
 
-    <div class="flex flex-wrap gap-3">
-      <a href="https://github.com/H1gor1" target="_blank" class="btn-primary">Projetos</a>
-      <a [routerLink]="['/contact']" class="btn-ghost">Falar comigo</a>
+    <div class="flex flex-wrap justify-center gap-3 lg:justify-start">
+      <a href="https://github.com/H1gor1" target="_blank" class="btn-primary">{{ i18n.texts().home.projectsCta }}</a>
+      <a [routerLink]="['/contact']" class="btn-ghost">{{ i18n.texts().home.contactCta }}</a>
     </div>
   </div>
 
-  <figure class="justify-self-start lg:justify-self-end transition duration-300 hover:scale-105">
+  <figure
+    class="order-1 justify-self-center transition duration-300 hover:scale-105 lg:order-2 lg:justify-self-end"
+  >
     <img
       ngSrc="/assets/foto.jpg"
       width="340"
       height="340"
-      alt="Foto de Higor Lino"
+      [attr.alt]="i18n.texts().home.photoAlt"
       priority
       class="h-64 w-64 rounded-full border border-border object-cover md:h-72 md:w-72 lg:h-85 lg:w-85"
     />
   </figure>
+</section>
+
+<section class="space-y-4 border-t border-border pt-8 text-center lg:text-left mt-8">
+  <div class="space-y-2 mb-4">
+    <p class="text-xs uppercase tracking-[0.2em] text-text-muted">{{ i18n.texts().home.stackLabel }}</p>
+    <h2 class="heading text-2xl font-semibold">{{ i18n.texts().home.stackTitle }}</h2>
+  </div>
+
+  <div
+    class="tech-marquee"
+    [style.--tech-marquee-duration.s]="carouselDurationSeconds"
+    [attr.aria-label]="i18n.texts().home.stackCarouselAria"
+  >
+    <div class="tech-marquee-inner">
+      <div class="tech-marquee-track">
+        @for (tech of techStack; track tech.label) {
+          <div class="tech-marquee-item" [attr.aria-label]="tech.label" [title]="tech.label">
+            <ng-icon [name]="tech.icon" class="text-text"></ng-icon>
+          </div>
+        }
+      </div>
+
+      <div class="tech-marquee-track" aria-hidden="true">
+        @for (tech of techStack; track tech.label + '-clone') {
+          <div class="tech-marquee-item" [title]="tech.label">
+            <ng-icon [name]="tech.icon" class="text-text"></ng-icon>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,0 +1,48 @@
+.tech-marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-marquee-inner {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: tech-marquee-scroll var(--tech-marquee-duration, 24s) linear infinite;
+}
+
+.tech-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: clamp(1.25rem, 4vw, 4.5rem);
+}
+
+.tech-marquee-track::after {
+  content: '';
+  display: block;
+  width: clamp(1.25rem, 4vw, 4.5rem);
+  flex: 0 0 clamp(1.25rem, 4vw, 4.5rem);
+}
+
+.tech-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(4.75rem, 18vw, 11rem);
+  color: var(--text);
+}
+
+.tech-marquee-item ng-icon {
+  width: clamp(3.25rem, 14vw, 9rem) !important;
+  height: clamp(3.25rem, 14vw, 9rem) !important;
+  font-size: clamp(3.25rem, 14vw, 9rem) !important;
+}
+
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

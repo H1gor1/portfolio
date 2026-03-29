@@ -1,15 +1,28 @@
 <div class="min-h-dvh bg-background transition-colors duration-300 [--header-h:4rem] [--footer-h:4.5rem] sm:[--header-h:4.5rem] sm:[--footer-h:3.25rem]">
   <header class="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
     <div class="mx-auto flex h-[var(--header-h)] w-full max-w-5xl items-center justify-between px-6 sm:px-10">
-      <p class="heading text-lg font-semibold">Portfólio</p>
+      <p class="heading text-lg font-semibold">{{ i18n.texts().app.title }}</p>
 
-      <button
-        type="button"
-        class="btn-ghost"
-        (click)="toggleTheme()"
-      >
-        {{ currentThemeLabel() }}
-      </button>
+      <div class="flex items-center gap-2">
+        <label class="sr-only" for="language-select">{{ i18n.texts().app.languageLabel }}</label>
+        <select
+          id="language-select"
+          class="rounded-xl border border-border bg-transparent px-2 py-2 text-xs font-semibold tracking-[0.08em] text-text outline-none transition-colors duration-200 hover:bg-surface focus:border-accent/45 sm:text-sm"
+          [value]="i18n.currentLanguage()"
+          (change)="changeLanguage($event)"
+        >
+          <option value="pt">{{ i18n.texts().app.languageOptionPt }}</option>
+          <option value="en">{{ i18n.texts().app.languageOptionEn }}</option>
+        </select>
+
+        <button
+          type="button"
+          class="btn-ghost"
+          (click)="toggleTheme()"
+        >
+          {{ currentThemeLabel() }}
+        </button>
+      </div>
     </div>
   </header>
 
@@ -19,8 +32,8 @@
 
   <footer class="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 backdrop-blur-sm">
     <div class="mx-auto flex min-h-[var(--footer-h)] w-full max-w-5xl flex-col justify-center gap-1 px-6 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-10">
-      <p class="heading text-sm font-semibold">Feito com &lt;3</p>
-      <p class="heading text-sm font-semibold">Higor Lino</p>
+      <p class="heading text-sm font-semibold">{{ i18n.texts().app.madeWith }}</p>
+      <p class="heading text-sm font-semibold">{{ i18n.texts().app.author }}</p>
     </div>
   </footer>
 </div>

@@ -1,1 +1,52 @@
-<p>links works!</p>
+<section class="relative isolate mx-auto grid gap-8 py-2 text-center md:gap-10 md:py-4">
+  <div
+    class="pointer-events-none absolute inset-x-[-1.2rem] -top-8 -z-10 h-64 bg-[radial-gradient(80%_80%_at_50%_20%,var(--surface),transparent_68%),linear-gradient(180deg,var(--surface),transparent)] opacity-75"
+  ></div>
+
+  <a
+    [routerLink]="['/']"
+    class="absolute right-0 top-0 inline-flex items-center rounded-xl border border-border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-text-muted transition-colors duration-200 hover:bg-surface hover:text-text"
+  >
+    {{ i18n.texts().links.backButton }}
+  </a>
+
+  <header class="grid justify-items-center gap-4">
+    <img
+      ngSrc="/assets/foto.jpg"
+      width="120"
+      height="120"
+      [attr.alt]="i18n.texts().links.photoAlt"
+      priority
+      class="h-24 w-24 rounded-full border border-border object-cover transition-transform duration-300 hover:scale-105 sm:h-28 sm:w-28"
+    />
+
+    <div class="space-y-3">
+      <p class="text-xs uppercase tracking-[0.2em] text-text-muted">{{ i18n.texts().links.sectionLabel }}</p>
+      <h1 class="heading text-3xl font-semibold sm:text-4xl">{{ i18n.texts().links.heroTitle }}</h1>
+      <p class="mx-auto max-w-xl text-sm text-text-muted">
+        {{ i18n.texts().links.heroDescription }}
+      </p>
+    </div>
+  </header>
+
+  <div class="grid gap-3 md:gap-4">
+    @for (item of socialLinks; track item.href; let index = $index) {
+      <a
+        class="grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 rounded-2xl border border-border bg-surface/80 px-4 py-4 text-text no-underline transition duration-200 hover:-translate-y-0.5 hover:border-accent/35 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent/60"
+        [style.animation-delay.ms]="index * 55"
+        [href]="item.href"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="i18n.texts().links.openPrefix + ' ' + i18n.texts().links.labels[item.labelKey]"
+      >
+        <span class="inline-flex h-10 w-10 items-center justify-center">
+          <ng-icon [name]="item.icon" class="h-7 w-7 sm:h-8 sm:w-8"></ng-icon>
+        </span>
+        <span class="text-left text-base font-semibold tracking-[0.01em] md:text-[1.04rem]">
+          {{ i18n.texts().links.labels[item.labelKey] }}
+        </span>
+        <span class="text-[1.06rem] text-text-muted" aria-hidden="true">↗</span>
+      </a>
+    }
+  </div>
+</section>

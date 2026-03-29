@@ -1,5 +1,7 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AppLanguage } from './i18n/language.types';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
+  protected readonly i18n = inject(LanguageService);
   protected readonly isDark = signal(false);
   protected readonly currentThemeLabel = computed(() =>
-    this.isDark() ? 'Modo escuro' : 'Modo claro',
+    this.isDark() ? this.i18n.texts().app.themeDark : this.i18n.texts().app.themeLight,
   );
 
   constructor() {
@@ -21,6 +24,11 @@ export class App {
     const nextMode = !this.isDark();
     this.isDark.set(nextMode);
     document.documentElement.classList.toggle('dark', nextMode);
+  }
+
+  protected changeLanguage(event: Event): void {
+    const language = (event.target as HTMLSelectElement).value as AppLanguage;
+    this.i18n.setLanguage(language);
   }
 
   private syncThemeFromDocument(): void {
