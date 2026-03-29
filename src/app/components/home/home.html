@@ -1,0 +1,29 @@
+<section class="grid gap-10 lg:grid-cols-[1fr_340px] lg:items-center">
+  <div class="space-y-6">
+    <p class="text-xs uppercase tracking-[0.2em] text-text-muted">Portfolio</p>
+
+    <h1 class="heading max-w-3xl text-4xl font-semibold sm:text-5xl">
+      Higor Gabriel Lino Silva
+    </h1>
+
+    <p class="max-w-2xl text-text-muted">
+      Use este bloco para abrir a página com uma frase curta sobre o que você faz.
+    </p>
+
+    <div class="flex flex-wrap gap-3">
+      <a href="https://github.com/H1gor1" target="_blank" class="btn-primary">Projetos</a>
+      <a [routerLink]="['/contact']" class="btn-ghost">Falar comigo</a>
+    </div>
+  </div>
+
+  <figure class="justify-self-start lg:justify-self-end transition duration-300 hover:scale-105">
+    <img
+      ngSrc="/assets/foto.jpg"
+      width="340"
+      height="340"
+      alt="Foto de Higor Lino"
+      priority
+      class="h-64 w-64 rounded-full border border-border object-cover md:h-72 md:w-72 lg:h-85 lg:w-85"
+    />
+  </figure>
+</section>

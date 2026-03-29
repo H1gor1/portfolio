@@ -1,3 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
-
+@config '../tailwind.config.js';
 @import 'tailwindcss';
+@import "tailwindcss-animated";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+}
+
+@layer base {
+  :root {
+    --background: #f5efe6;
+    --surface: #f8f4ec;
+    --text: #111111;
+    --text-muted: #3a3a3a;
+    --border: #d8ccba;
+    --accent: #111111;
+  }
+
+  .dark {
+    --background: #0f0f0f;
+    --surface: #171717;
+    --text: #f5efe6;
+    --text-muted: #d9d1c5;
+    --border: #3a3a3a;
+    --accent: #f5efe6;
+  }
+
+  html,
+  body {
+    @apply bg-background text-text antialiased;
+    min-height: 100%;
+    transition:
+      background-color 240ms ease,
+      color 240ms ease,
+      border-color 240ms ease;
+  }
+
+  body {
+    @apply m-0 font-sans;
+  }
+}
+
+@layer components {
+  .heading {
+    @apply text-text tracking-tight leading-tight;
+  }
+
+  .link {
+    @apply text-accent underline underline-offset-4 decoration-transparent transition-colors duration-200 hover:decoration-current;
+  }
+
+  .card {
+    @apply rounded-2xl border border-border bg-surface p-6 transition-colors duration-200;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl border border-border px-4 py-2 text-sm font-medium transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl border border-border bg-accent px-4 py-2 text-sm font-medium text-background transition-colors duration-200 hover:bg-text hover:text-background;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl border border-border bg-transparent px-4 py-2 text-sm font-medium text-text transition-colors duration-200 hover:bg-surface;
+  }
+}
